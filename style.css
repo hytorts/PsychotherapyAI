@@ -1,0 +1,399 @@
+/* ===== 기본 설정 ===== */
+body {
+  margin: 0;
+  padding: 0;
+  background: url('/back_img.png') no-repeat center center / cover;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Noto Sans KR', sans-serif;
+  overflow: hidden;
+}
+
+/* ===== 챗봇 버튼 ===== */
+#chatButton {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #1C4F83;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  transition: 0.25s;
+}
+
+#chatButton:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+  background-color: #163b63;
+}
+
+/* ===== 챗봇 창 ===== */
+#chatWindow {
+  position: fixed;
+  bottom: 100px;
+  right: 40px;
+  width: 420px;
+  height: 600px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  animation: fadeIn 0.3s ease;
+  max-width: 95vw;
+  max-height: 90vh;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== 챗봇 헤더 ===== */
+.chat-header {
+  background: linear-gradient(90deg, #5a7de1, #1C4F83);
+  color: white;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.chat-header .title {
+  font-size: 16px;
+}
+
+.chat-header .actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dots {
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.dots::after {
+  content: '프롬프트 설정';
+  position: absolute;
+  bottom: -28px;
+  left: -30px;
+  background: #333;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  opacity: 0;
+  transition: 0.3s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.dots:hover::after {
+  opacity: 1;
+}
+
+.close-btn {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* ===== 챗봇 내용 ===== */
+#chatBody {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background: #f9fafb;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ===== 입력창 ===== */
+.chat-input {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  background: #fff;
+}
+
+.chat-input input {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 10px 15px;
+  font-size: 14px;
+  outline: none;
+}
+
+.chat-input button {
+  background: #1C4F83;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px;
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ===== 프롬프트 설정창 ===== */
+#promptWindow {
+  position: fixed;
+  bottom: 100px;
+  right: 40px;
+  width: 520px;
+  height: 620px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  display: none;
+  flex-direction: column;
+  overflow-y: auto;
+  animation: fadeIn 0.3s ease;
+  padding: 20px;
+  max-width: 95vw;
+  max-height: 90vh;
+}
+
+#promptWindow h2 {
+  color: #1C4F83;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#promptWindow p {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* ===== 프롬프트 입력폼 ===== */
+.section {
+  border: solid 1px #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 15px;
+  background: #fafafa;
+}
+
+.section h3 {
+  margin-top: 0;
+  color: #1C4F83;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+#promptWindow textarea {
+  width: 95%;
+  height: 70px;
+  resize: none;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+  font-size: 13px;
+  line-height: 1.4em;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#promptWindow input {
+  margin-bottom: 6px;
+  padding: 5px 8px;
+  width: 180px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  font-size: 13px;
+  box-sizing: border-box;
+  text-indent: 0;  /* ← 커서 위치 보정 */
+}
+
+
+/* ===== 버튼 줄 ===== */
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.save-btn,
+.back-btn,
+.view-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.save-btn {
+  background: #2E6F40;
+  color: white;
+}
+
+.save-btn:hover {
+  background: #3e8c4e;
+}
+
+.view-btn {
+  background: #555;
+  color: white;
+}
+
+.view-btn:hover {
+  background: #666;
+}
+
+.back-btn {
+  background: #1C4F83;
+  color: white;
+}
+
+.back-btn:hover {
+  background: #2d5ea0;
+}
+
+/* ===== 프리뷰 (텍스트 확인) ===== */
+#promptPreview {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  width: 550px;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+.preview-header {
+  background: #1C4F83;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  font-weight: bold;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.close-preview {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+#previewContent {
+  padding: 15px;
+  white-space: pre-wrap;
+  font-size: 14px;
+  line-height: 1.6;
+  background: #f9f9f9;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 600px) {
+
+  #chatWindow,
+  #promptWindow {
+    width: 95vw;
+    height: 85vh;
+    right: 2.5vw;
+    bottom: 10px;
+  }
+
+  #promptWindow textarea {
+    width: 100%;
+  }
+
+  .section input {
+    width: 100%;
+  }
+}
+
+/* ===================== */
+/* 💬 채팅 메시지 스타일 */
+/* ===================== */
+.message.user {
+  text-align: right;
+  background: #2b3a50;
+  color: #fff;
+  margin: 8px 0;
+  padding: 8px 12px;
+  border-radius: 10px 10px 0 10px;
+  align-self: flex-end;
+  max-width: 80%;
+}
+
+.message.ai {
+  text-align: left;
+  background: #f3f3f3;
+  color: #111;
+  margin: 8px 0;
+  padding: 8px 12px;
+  border-radius: 10px 10px 10px 0;
+  align-self: flex-start;
+  max-width: 80%;
+}
+
+/* ===================== */
+/* 📜 모달창 스타일 추가 */
+/* ===================== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: #111;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #fff;
+}
+
+.modal-text {
+  font-size: 14px;
+  line-height: 1.6;
+}

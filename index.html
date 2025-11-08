@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 상담 챗봇</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 💬 챗봇 버튼 -->
+  <button id="chatButton">🤖</button>
+
+  <!-- 🪟 챗봇 창 -->
+  <div id="chatWindow">
+    <div class="chat-header">
+      <span class="title">AI 상담 챗봇</span>
+      <div class="actions">
+        <span class="dots">⋮</span>
+        <span class="close-btn">✕</span>
+      </div>
+    </div>
+    <div id="chatBody">
+      <p>안녕하세요 👋<br>상담을 시작하려면 아래에 메시지를 입력해주세요.</p>
+    </div>
+    <div class="chat-input">
+      <input type="text" placeholder="메시지를 입력하세요..." />
+      <button>전송</button>
+    </div>
+  </div>
+
+  <!-- ⚙️ 프롬프트 설정 창 -->
+  <div id="promptWindow">
+    <h2>🧠 프롬프트 설정</h2>
+    <form id="promptForm">
+      <div>
+        <h3>현재의 적응 상태</h3>
+        이상상태 경험: <input type="text" name="이상상태경험"><br>
+        <b>부정적 정서</b><br>
+        우울: <input type="text" name="우울"><br>
+        불안: <input type="text" name="불안"><br>
+        분노: <input type="text" name="분노"><br>
+        <b>부적응을 유발하는 신념</b><br>
+        완벽주의: <input type="text" name="완벽주의"><br>
+        인정욕구: <input type="text" name="인정욕구"><br>
+        자기비난: <input type="text" name="자기비난"><br>
+        환경적 스트레스: <input type="text" name="환경적스트레스"><br><br>
+        현재의 적응 상태 한줄: <br><textarea name="현재의적응상태한줄"></textarea>
+      </div>
+
+      <div>
+        <h3>문제해결방식</h3>
+        <b>스트레스 반응 태도</b><br>
+        적극성: <input type="text" name="적극성"><br>
+        도전성: <input type="text" name="도전성"><br>
+        통제감: <input type="text" name="통제감"><br>
+        <b>스트레스 대처방식</b><br>
+        문제중심: <input type="text" name="문제중심"><br>
+        정서중심: <input type="text" name="정서중심"><br>
+        회피/분리: <input type="text" name="회피분리"><br>
+        <b>대인관계양상</b><br>
+        사교성: <input type="text" name="사교성"><br>
+        주장성/주도성: <input type="text" name="주장성주도성"><br><br>
+        문제 해결 방식 한줄: <br><textarea name="문제해결방식한줄"></textarea>
+      </div>
+
+      <div>
+        <h3>심리적 자원</h3>
+        자아존중감:<input type="text" name="자아존중감"><br>
+        사회적 지지:<input type="text" name="사회적지지"><br><br>
+        심리적 자원 한줄: <br><textarea name="심리적자원한줄"></textarea>
+      </div>
+
+      <div>
+        <h3>종합심리평가 개별해석</h3>
+        적응상태: <br><textarea name="적응상태"></textarea><br><br>
+        문제해결 방식: <br><textarea name="문제해결방식"></textarea><br><br>
+        심리적 자원: <br><textarea name="심리적자원"></textarea><br><br>
+        종합소견 및 권고사항: <br><textarea name="종합소견및권고사항"></textarea><br><br>
+      </div>
+    </form>
+
+    <!-- 🔘 버튼들 -->
+    <div class="prompt-buttons">
+      <button class="save-btn">저장</button>
+      <button class="view-btn">텍스트 확인</button>
+      <button class="back-btn">뒤로가기</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
